@@ -1,0 +1,1424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>I Love You</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="style.css"><script src="https://unpkg.com/scrollreveal"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+  <script src="https://unpkg.com/typeit@8.7.0/dist/index.umd.js"></script>
+
+  <!-- Demo styles -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Inter&family=Itim&display=swap');
+	
+	:root {
+	--poppins: 'Poppins', sans-serif;
+	--nunito: 'Nunito Sans', sans-serif;
+	--caveat: 'Caveat', cursive;
+	--quicksand: 'Quicksand', sans-serif;
+	--itim: 'Itim', cursive;
+	--inter: 'Inter', sans-serif;
+	}
+
+    html, body {position: relative;height: 100%;}
+    body {background: #000;font-family: 'Itim', cursive;font-size: 14px;color: #fff;text-shadow: 0px 2px 2px rgba(0, 0, 0, .5);margin: 0;padding: 0;}
+    
+    #bodyblur{opacity:.1;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);transition:all 1s ease;} 
+    #thisblur{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);position:absolute;top:0;left:0;right:0;bottom:0;}
+    #wallpaper{/*animation: jj 7s infinite;*/width:100%;height:100%;transform: scale(1.3);transition:all 1.3s ease;}
+    #wallpaper2, #wallpaper3, #wallpaper4{display:none}
+    @keyframes jj{0%  {transform: scale(1);} 50% {transform: scale(1.3);} 100% {transform: scale(1);}}
+
+    p{margin-left:50px;margin-right:70px;text-align:left}
+    #ket{margin:20px}
+
+    .swiper {width: 100%;height: 100%;padding:0;margin:0;}
+    .swiper-slide {text-align: center;font-size: 18px;/*background: #fff;*/display: flex;flex-direction: column;justify-content: center;align-items: center;margin-top:-100px;}
+    .textLeft{display:flex;width:100%;height: 180px; overflow: auto;justify-content: left;text-align: left !important;margin-left:70px;}
+    .swiper-slide img {display: block;width: 100%;height: 100%;object-fit: cover;}
+    .swiper-pagination{margin-bottom:25vh}
+    .swiper-pagination-bullet-active{background-color: #fff !important;opacity:1 !important}
+    .swiper-pagination-bullet{background-color:rgba(255,255,255, 1) !important;}
+    .swiper-button-next, .swiper-button-prev{display:flex;top:unset;bottom:-100px}
+    
+    .sembunyi{display: none !important;}
+    .stiker{display:flex;justify-content:center;align-items:center;margin-left:auto;margin-right:auto;margin-bottom:20px;transition:all .75s ease}
+    .stiker img{width:90px;height:90px;box-shadow: 0 4px 30px rgba(255,255,255, 0.3);backdrop-filter: blur(5px);-webkit-backdrop-filter: blur(5px);background: rgba(255, 255, 255, .5);border: 1px solid rgba(255, 255, 255, 0.3);border-radius: 50%;padding:10px;}
+    .stiker img.sty2{background:none;filter: drop-shadow(0 4px 8px rgba(255, 255, 255, 0.2));box-shadow: none;backdrop-filter: none;-webkit-backdrop-filter: none;border: none;border-radius: 0;padding:0;width: auto;height:90px;}
+	b.merah{color:red}
+	b.kuning{color:yellow}
+	b.putih{text-shadow:none;padding-left:8px;padding-right:8px;padding-top:2px;padding-bottom:2px;background-color:white;border-radius:12px}
+	span.garismerah{border-bottom:2px solid red}
+	span.gariskuning{border-bottom:2px solid yellow}
+    p{color:white;font-size:15px;line-height:1.5em;}
+    .scale0{opacity:0;transform: scale(0);transition: all .9s ease;}
+    .scale1{opacity:1;transform: scale(1);transition: all .9s ease;}
+    svg{vertical-align: middle;width: 22px;height: 22px;fill: #fff}
+    .heart-icon {z-index:100;width: 30px;height: 30px;position: fixed;animation:  heartMove linear 1;top: -10vh;}
+
+	@keyframes heartMove {
+	  0% {transform: translateY(-10vh);}
+	  100% {transform: translateY(100vh);}
+	}
+	    svg.line{fill: none;stroke: #fff;stroke-width: 2;}
+	    .spin{animation: spin 3s linear infinite alternate;}
+	@keyframes spin {
+	  from {
+	    transform: rotate(20deg);
+	  }
+	  to {
+	    transform: rotate(-20deg);
+	  }
+	}
+	@keyframes moving {
+	  from {
+	    transform: translateY(0);
+	  }
+	  to {
+	    transform: translateY(3px);
+	  }
+	}
+    .overlay {position: fixed;top: 0;left: 0;width: 100%;height: 100%;display: flex;flex-direction:column;justify-content: center;align-items: center;background:rgba(0,0,0,.6);z-index:100;}
+    .loading-message {font-size: 13px;text-shadow: 0px 2px 2px rgba(0, 0, 0, .8);color:white;text-align: center;}
+    .blocklove{display: none;flex-direction: column;justify-content: center;align-items: center;}
+    
+    .blocktext{margin-top:10px;position:relative;width:100%;height: 180px; overflow: auto;background-color:none;}
+    
+    .sertifikat {position: relative;width: 330px;height: 236px;text-shadow:none}
+	.sertifikat img {border-radius:30px;width: 100%;height: 100%;}
+	.text-overlay {position: absolute;top: 35px;left: 0;width: 100%;text-align: center;color: #333;font-size: 14px;font-weight: bold;}
+	.text-overlay h1 {font-size: 20px;color:#fff;margin: 0;}
+	.text-overlay .sub-title {font-size: 14px;color:yellow;margin-bottom: 10px;}
+	.content {font-size: 12px;color:#fff;}
+	.real {font-weight: bold;color: #fff;font-size: 12px;}
+    
+    .swal2-modal > *{color:white}
+    .swal2-title{line-height:1.3em;font-size:18px;text-align:center;padding:15px 30px 0 30px;}
+    .swal2-container.swal2-backdrop-show{background: rgba(0,0,0,.5);}
+    .swal2-timer-progress-bar-container > *{opacity:.7;background:#00B6FF;margin:0 2px}
+    .swal2-modal{box-shadow: rgba(255,255,255, 0.3) 0px 7px 29px 0px;background:rgba(0,0,0,.9);max-width:320px;border-right:2px solid #fff;border-left:2px solid #fff;border-radius:4px;top:-50px;}
+   
+    .cover{margin-top:-120px;display:flex;flex-direction:column;justify-content:center;align-items:center}
+    .lovein{font-size:50px;display:flex;align-items:center;justify-content:center;transition:all .3s ease;}
+    .lovein svg{width:80px;height:80px;fill:#fefefe}
+    .awalan{margin-top:20px;width:220px;min-height:25px;padding:12px;font-size:13px;color:white;background:rgba(0,0,0,.5);border:1px solid #fff;border-radius:50px;display:flex;align-items:center;text-align:left}
+    .awalan svg{margin-right:15px;width:25px;height:25px;stroke:white}
+    
+	.mainMsg{margin-top:120px;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;}
+	.click-prompt-reasons{box-sizing:border-box;width:min(320px,calc(100vw - 48px));min-height:66px;margin-top:15px;padding:0 18px;border:1px solid rgba(255,255,255,.95);border-radius:999px;background:rgba(0,0,0,.85);color:#fff;display:flex;align-items:center;gap:20px;font-family:'Quicksand',sans-serif;font-size:17px;font-weight:700;cursor:pointer;transition:background .2s ease,transform .2s ease;}
+	.click-prompt-reasons:hover{background:rgba(35,25,38,.95);transform:scale(1.02);}
+	.click-prompt-reasons svg{width:30px;height:30px;flex:none;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;}
+	.mainSt{display:flex;justify-content:center;align-items:center;margin-left:auto;margin-right:auto;transform:scale(0);transition:all 0.5s ease;}
+	.mainSt img{width:80px;height:80px;box-shadow:0 4px 30px rgba(255,255,255,0.3);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);background:rgba(255,255,255,0.4);border:2px solid rgba(255,255,255,0.3);border-radius:50%;padding:10px;}
+	.mainTxt{margin-top:24px;text-align:center;color:white;font-size:18px;font-weight:700;transform:scale(0);transition:all 0.5s ease;}
+	.secondTxt{margin-top:12px;text-align:center;color:white;font-size:17px;font-weight:400;transform:scale(0);transition:all 0.5s ease;}
+	.txtAlt{font-size:17px;font-weight:400;}
+	.caveat{font-family: 'Caveat', cursive;font-weight:700;}
+	
+	#Tombol {margin-top:24px;position:relative;transform:scale(0);opacity:0;margin-left:auto;margin-right:auto;display:flex;justify-content:center;align-items:center;list-style:none;transition:all .6s ease;}
+    #Tombol a {cursor:none;display:inline-flex;justify-content:center;align-items:center;margin:0 8px;min-width:40px;padding:10px;outline:0;border:1px solid white;border-radius:18px;line-height:15px;background:rgba(0,0,0,.5);color:white;font-size:15px;font-weight:700;white-space:nowrap;overflow:hidden;box-shadow: rgba(255,255,255, 0.15) 0px 7px 29px 0px;z-index:1;transition:all .6s ease;}
+    #Tombol a.biru{background:#3D3BF3}
+    #Tombol a.merah{background:#FF2929}
+
+    /* ================= 50 REASONS & GIFT OVERLAY STYLES ================= */
+    #reasons-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100dvh; /* Dynamic Viewport Height for mobile address bars */
+      background: rgba(4, 1, 8, 0.92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 20000;
+      display: none;
+      justify-content: center; /* Center card horizontally */
+      align-items: center; /* Center card vertically */
+      box-sizing: border-box;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #gift-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100dvh;
+      background: rgba(4, 1, 8, 0.94);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 20000;
+      display: none;
+      justify-content: center; /* Center horizontally on mobile */
+      align-items: center; /* Center vertically on mobile */
+      box-sizing: border-box;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* Scroll control bar styles */
+    .scroll-controls {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 30px;
+      padding: 4px 12px;
+      display: flex;
+      gap: 8px;
+      z-index: 25000;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .scroll-ctrl-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s ease, background 0.2s ease;
+      border-radius: 20px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .scroll-ctrl-btn:active {
+      transform: scale(0.9);
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .reasons-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 28px;
+      width: 100%;
+      max-width: 380px;
+      max-height: 80dvh; /* Force modal to stay within viewport bounds */
+      padding: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(255, 75, 114, 0.1);
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column; /* Set up flexbox to allow internal content stretching */
+    }
+
+    .reasons-card.active {
+      transform: none !important; /* Clear transform on active state to prevent Safari layer freeze */
+    }
+
+    .reasons-header {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+
+    .reasons-header img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1.5px solid rgba(255, 255, 255, 0.3);
+      padding: 4px;
+      margin-right: 14px;
+      object-fit: contain;
+    }
+
+    .reasons-header h3 {
+      font-size: 19px;
+      font-weight: 700;
+      font-family: 'Itim', cursive;
+      background: linear-gradient(45deg, #ff6085, #ffa2b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 2px 10px rgba(255, 75, 114, 0.15);
+      margin: 0;
+    }
+
+    .reasons-content {
+      max-height: 45dvh; /* Strict height limit to guarantee overflow scrolling on mobile */
+      overflow-y: scroll !important; /* Force scrollbar track to initialize on mobile */
+      -webkit-overflow-scrolling: touch !important; /* Touch inertia scroll for iOS Safari */
+      touch-action: pan-y !important; /* Explicitly allow vertical swipes */
+      padding-right: 6px;
+      margin-bottom: 20px;
+    }
+
+    .reasons-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .reasons-list li {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 3px solid #ff4b72;
+      padding: 12px 14px 12px 38px;
+      margin-bottom: 12px;
+      border-radius: 0 14px 14px 0;
+      font-size: 13.5px;
+      line-height: 1.55;
+      position: relative;
+      text-align: left;
+      opacity: 0;
+      transform: translateX(-15px);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: 'Quicksand', sans-serif;
+      text-shadow: none;
+      color: #fff;
+    }
+
+    .reasons-list li.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reasons-list li::before {
+      content: "💖";
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+    }
+
+    .reasons-btn {
+      background: linear-gradient(135deg, #ff4b72 0%, #ff7697 100%);
+      border: none;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 6px 20px rgba(255, 75, 114, 0.35);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      flex-shrink: 0;
+    }
+
+    .reasons-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(255, 75, 114, 0.5);
+    }
+
+    .reasons-btn:active {
+      transform: translateY(1px);
+    }
+    
+    /* ================= GIFT (KADOIN) STYLES ================= */
+    .gift-card {
+      text-align: center;
+      width: 100%;
+      max-width: 360px;
+      margin: auto; /* Center inside flex parent */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .gift-title {
+      font-size: 21px;
+      font-weight: 700;
+      margin-bottom: 30px;
+      font-family: 'Itim', cursive;
+      color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      animation: heartBeat 2s infinite;
+      letter-spacing: 0.5px;
+    }
+
+    .gift-box-container {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin: 10px auto 30px auto;
+      cursor: pointer;
+      animation: floatGift 3.5s ease-in-out infinite;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .gift-box-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      z-index: 2;
+      position: relative;
+      filter: drop-shadow(0 12px 25px rgba(0,0,0,0.4));
+    }
+
+    .gift-box-glow {
+      position: absolute;
+      top: -15%;
+      left: -15%;
+      width: 130%;
+      height: 130%;
+      background: radial-gradient(circle, rgba(255, 75, 114, 0.35) 0%, rgba(255, 75, 114, 0) 70%);
+      border-radius: 50%;
+      z-index: 1;
+      animation: pulseGlow 2s infinite alternate;
+    }
+
+    .gift-box-container:hover {
+      transform: scale(1.1) rotate(2deg);
+    }
+
+    .gift-box-container.shake {
+      animation: shakeGift 0.6s infinite;
+    }
+
+    .gift-hint {
+      font-size: 13.5px;
+      color: rgba(255, 255, 255, 0.85);
+      font-style: italic;
+      letter-spacing: 0.5px;
+      animation: blink 2.5s infinite;
+    }
+
+    /* ================= CERTIFICATE OF LOVE STYLES ================= */
+    .cert-container {
+      background: linear-gradient(to bottom, #fffcf6 0%, #fdf9f0 100%);
+      color: #3e3327;
+      border: 4px double #d4af37;
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(212, 175, 55, 0.15);
+      width: 100%;
+      max-width: 350px;
+      margin: 0 auto;
+      position: relative;
+      transform: rotate(-1deg);
+      overflow: hidden;
+      display: none;
+      box-sizing: border-box;
+      animation: popIn 0.9s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .cert-inner {
+      border: 1.5px dashed #c59b27;
+      border-radius: 12px;
+      padding: 24px 18px;
+      text-align: center;
+      background: rgba(255, 252, 245, 0.5);
+    }
+
+    .cert-bunga {
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      width: 52px;
+      height: 52px;
+      object-fit: contain;
+      opacity: 0.95;
+    }
+
+    .cert-title {
+      font-family: 'Caveat', cursive;
+      font-size: 29px;
+      color: #896700;
+      font-weight: 700;
+      margin-bottom: 6px;
+      margin-top: 5px;
+      letter-spacing: 0.5px;
+    }
+
+    .cert-sub {
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #7c6d5c;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .cert-recipient {
+      font-family: 'Itim', cursive;
+      font-size: 24px;
+      color: #e63956;
+      border-bottom: 1.5px solid #eadecd;
+      padding-bottom: 4px;
+      margin: 6px auto 14px auto;
+      display: inline-block;
+      min-width: 140px;
+      font-weight: bold;
+    }
+
+    .cert-text {
+      font-size: 12px;
+      line-height: 1.6;
+      color: #5f4e3c;
+      margin-bottom: 24px;
+      font-style: italic;
+      padding: 0 5px;
+    }
+
+    .cert-footer {
+      display: flex;
+      justify-content: space-between;
+      font-size: 9.5px;
+      color: #8c7b69;
+      padding: 0 4px;
+      text-align: center;
+    }
+
+    .cert-sig {
+      border-top: 1px solid #dcd1be;
+      padding-top: 5px;
+      width: 44%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .cert-sig-val {
+      font-weight: 700;
+      color: #4a3e31;
+      margin-top: 2px;
+    }
+
+    .cert-sig-val.caveat {
+      font-family: 'Caveat', cursive;
+      font-size: 19px;
+      color: #e63956;
+      font-weight: bold;
+      line-height: 1.1;
+    }
+    
+    .cert-buttons {
+      display: none;
+      gap: 14px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 24px;
+      box-sizing: border-box;
+      animation: popIn 0.8s ease forwards;
+    }
+
+    .cert-btn {
+      flex: 1;
+      max-width: 155px;
+      padding: 11px 10px;
+      border-radius: 22px;
+      font-size: 12.5px;
+      font-weight: bold;
+      cursor: pointer;
+      border: none;
+      font-family: 'Quicksand', sans-serif;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.18);
+      transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+      box-sizing: border-box;
+    }
+
+    .cert-btn.accept-1 {
+      background: linear-gradient(135deg, #ff4b72 0%, #ff7697 100%);
+      color: white;
+      box-shadow: 0 4px 15px rgba(255, 75, 114, 0.3);
+    }
+
+    .cert-btn.accept-2 {
+      background: linear-gradient(135deg, #ffd700 0%, #ffb700 100%);
+      color: #3e2800;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.35);
+    }
+
+    .cert-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+    
+    /* ================= KEYFRAMES ================= */
+    @keyframes floatGift {
+      0% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+      100% { transform: translateY(0) rotate(0deg); }
+    }
+
+    @keyframes pulseGlow {
+      from { transform: scale(0.94); opacity: 0.45; }
+      to { transform: scale(1.06); opacity: 0.85; }
+    }
+
+    @keyframes shakeGift {
+      0% { transform: translate(1px, 1px) rotate(0deg); }
+      10% { transform: translate(-1px, -2px) rotate(-1deg); }
+      20% { transform: translate(-3px, 0px) rotate(1deg); }
+      30% { transform: translate(0px, 2px) rotate(0deg); }
+      40% { transform: translate(1px, -1px) rotate(1deg); }
+      50% { transform: translate(-1px, 2px) rotate(-1deg); }
+      60% { transform: translate(-3px, 1px) rotate(0deg); }
+      70% { transform: translate(2px, 1px) rotate(-1deg); }
+      80% { transform: translate(-1px, -1px) rotate(1deg); }
+      90% { transform: translate(2px, 2px) rotate(0deg); }
+      100% { transform: translate(1px, -2px) rotate(-1deg); }
+    }
+
+    @keyframes popIn {
+      0% { transform: scale(0.75) rotate(-4deg); opacity: 0; }
+      100% { transform: scale(1) rotate(-1deg); opacity: 1; }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.65; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes heartBeat {
+      0% { transform: scale(1); }
+      14% { transform: scale(1.06); }
+      28% { transform: scale(1); }
+      42% { transform: scale(1.06); }
+      70% { transform: scale(1); }
+    }
+    
+    .burst-particle {
+      position: fixed;
+      pointer-events: none;
+      z-index: 30000;
+      animation: explodeParticle 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+    }
+
+    @keyframes explodeParticle {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(var(--sc)) rotate(var(--rot));
+        opacity: 0;
+      }
+    }
+
+    /* ================= SWEETALERT CUSTOM THEME OVERRIDES ================= */
+    .romantic-swal {
+      background: rgba(16, 5, 24, 0.94) !important;
+      backdrop-filter: blur(16px) !important;
+      -webkit-backdrop-filter: blur(16px) !important;
+      border: 1px solid rgba(255, 75, 114, 0.28) !important;
+      border-radius: 24px !important;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 75, 114, 0.15) !important;
+      padding: 20px 15px 25px 15px !important;
+      color: #fff !important;
+    }
+
+    .romantic-swal-title {
+      font-family: 'Itim', cursive !important;
+      color: #ff6085 !important;
+      font-size: 20px !important;
+      font-weight: 700 !important;
+      padding-top: 10px !important;
+    }
+
+    .romantic-swal-html {
+      color: #eee !important;
+      font-family: 'Quicksand', sans-serif !important;
+      font-size: 14px !important;
+      margin-top: 8px !important;
+    }
+
+    .romantic-swal-input {
+      background: rgba(255, 255, 255, 0.07) !important;
+      border: 1px solid rgba(255, 75, 114, 0.25) !important;
+      border-radius: 12px !important;
+      color: #fff !important;
+      font-size: 16px !important; /* Extremely important: stops iOS browser auto-zooming on focus */
+      font-family: 'Quicksand', sans-serif !important;
+      box-shadow: none !important;
+      height: 44px !important;
+      margin: 15px auto !important;
+      width: 85% !important;
+      text-align: center !important;
+    }
+
+    .romantic-swal-input:focus {
+      border-color: #ff4b72 !important;
+      box-shadow: 0 0 8px rgba(255, 75, 114, 0.35) !important;
+    }
+
+    .romantic-swal-confirm {
+      background: linear-gradient(135deg, #ff4b72 0%, #ff7697 100%) !important;
+      box-shadow: 0 5px 15px rgba(255, 75, 114, 0.3) !important;
+      border-radius: 25px !important;
+      font-family: 'Quicksand', sans-serif !important;
+      font-weight: bold !important;
+      padding: 11px 30px !important;
+      font-size: 14px !important;
+      border: none !important;
+    }
+
+    .romantic-swal-confirm:hover {
+      box-shadow: 0 6px 18px rgba(255, 75, 114, 0.45) !important;
+    }
+</style>
+</head>
+
+<body>
+  <audio src="./assets/fullsenyum.mp3" id="linkmp3" class="sembunyi"></audio>
+    <div class="overlay" style="display: none;">
+        <div class="cover">
+        <p style="font-size:17px;font-weight:700;margin:0">Open this Shashi Bacca, okay? 😆</p>
+       <div id="loveIn" class="awalan">
+         <svg class='line' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.000000, 2.000000)'><path d='M9.27542857,0.714285714 C14.0030476,0.714285714 17.836381,4.54666667 17.836381,9.2752381 C17.836381,14.0038095 14.0030476,17.8361905 9.27542857,17.8361905 C4.54685714,17.8361905 0.71447619,14.0038095 0.71447619,9.2752381 C0.71447619,4.54666667 4.54685714,0.714285714 9.27542857,0.714285714 Z'></path><path d='M17.8989524,16.487619 C18.678,16.487619 19.3094286,17.12 19.3094286,17.8980952 C19.3094286,18.6780952 18.678,19.3095238 17.8989524,19.3095238 C17.1199048,19.3095238 16.4875238,18.6780952 16.4875238,17.8980952 C16.4875238,17.12 17.1199048,16.487619 17.8989524,16.487619 Z'></path></g></svg>
+         <label style="font-size:16px">Click here...</label>
+       </div>
+    </div>
+   </div>
+   <script>
+    linkmp3.onloadeddata = function() { document.querySelector('.overlay').style.display = 'flex'; };
+   </script>
+   
+   <div id="bodyblur">
+     <img src="./assets/awan3.jpg" id="wallpaper"/>
+     <div id="thisblur"></div>
+   </div>
+   
+    <!-- Swiper -->
+    <div class="swiper">
+        
+                 <div class="mainMsg">
+                     <div class="mainSt">
+                         <img id="st1" src="./assets/gemoy.gif" />
+                         <img id="st2" src="./assets/gigitin.gif" class="sembunyi" />
+                         <img id="st3" src="./assets/terlope.gif" class="sembunyi" />
+                         <img id="st4" src="./assets/hiya.gif" class="sembunyi" />
+                         <img id="st5" src="./assets/cubit.gif" class="sembunyi" />
+                         <img id="st6" src="./assets/ledekin.gif" class="sembunyi" />
+                         <img id="st7" src="./assets/muah.gif" class="sembunyi" />
+                     </div>
+                     <span class="mainTxt"></span>
+                     <span class="secondTxt">Ahahaha~ 😆</span>
+             
+                     <div id="Tombol">
+                        <a id="By" class="biru" onClick="fnYes()">Blue</a>
+                        <a id="Bn" class="merah" onClick="fnNo()">Red</a>
+                        <!--<a id="Bn" onClick="btn='Bn';fungsibaru(btn)">No</a>-->
+                        
+                        <span id="penggantiBy" class="sembunyi">Let's Go</span>
+                        <span id="penggantiBn" class="sembunyi">Don't want</span>
+                      </div>
+                 </div>
+             
+                 <script>
+                     const images = [
+                         st1.src,
+                         st2.src,
+                         st3.src,
+                         st4.src,			            
+                         st5.src,	       
+                         st6.src,
+                         st7.src,	       
+                     ];
+                     const texts = [
+                         "Let's playing a Game",
+                         "Sitting in the Living Room,",
+                         "I Really Like<br>Playing Games,",
+                         "But What I Like the Most...",
+                         "Is You Shashi 😝😋💗",
+                     ];
+             
+                     let currentIndex = 0;
+                     var tombolDipilih = "";
+                     const mainSt = document.querySelector('.mainSt');
+                     const mainTxt = document.querySelector('.mainTxt');
+                     const secondTxt = document.querySelector('.secondTxt');
+             
+                     function showElements() {
+                         mainSt.style.transform = 'scale(1)';
+                         mainTxt.style.transform = 'scale(1)';
+                         setTimeout(() => {fungsiBerfungsi = true}, 1000);
+                     }
+             
+                     function nextSection(delay){
+                             fungsiBerfungsi = false;
+                             mainSt.style.transform = 'scale(0)';
+                             mainTxt.style.transform = 'scale(0)';
+             
+                             setTimeout(() => {
+                                 currentIndex = (currentIndex + 1) % images.length;
+             
+                                 if(currentIndex == 50){
+                                     mainTxt.innerHTML = "";
+                                     mainSt.querySelector('img').src = images[5];
+                                     setTimeout(teksAnimasi, 200);
+                                 }
+             
+                                 if(currentIndex < 50){
+                                     mainSt.querySelector('img').src = images[currentIndex];
+                                     teksAnimasi(texts[currentIndex], delay);
+                                     //mainTxt.innerHTML = texts[currentIndex];
+                                 }
+                     
+                                 showElements();
+                             }, 200);
+                       }
+             
+                       function fnYes(){
+                          tombolDipilih = "Blue";
+                          texts[2] = "Yeaayy! 😆<br><br>If you choose <b style='color:#00A0FF;'>Blue</b> then<br>tonight we <i>Sleep Call</i> 🫣";
+                          tombol.style = "";
+                          nextSection();
+                          setTimeout(nextSection, 3500);
+                       }
+                 
+                       function fnNo(){
+                          tombolDipilih = "Red";
+                          texts[2] = "Yeaayy! 😆<br><br>If you choose <b style='color:#FF2C00;'>Red</b> then<br>tonight we <i>Sleep Call</i> 🫣";
+                          tombol.style = "";
+                          nextSection();
+                          setTimeout(nextSection, 3500);
+                       }
+                 </script>
+    </div>
+
+<script>
+const body = document.querySelector("body"); audio = new Audio('' + linkmp3.src); 
+tombol = document.querySelector('#Tombol');
+
+/*
+        teksScale = document.querySelector('#teks' + teksSekarang);
+        stikerScale = document.querySelector('#stiker' + teksSekarang);
+        Tombol = document.querySelector('#Tombol');
+
+        setTimeout(function(){
+          teksScale.classList.add("scale1");
+          stikerScale.classList.add("scale1");
+        }, 50);
+*/
+
+function teksAnimasi(varText, delay){
+    mainTxt.innerHTML = "";
+    new TypeIt(mainTxt, {
+    strings: [varText],
+    startDelay: 50, speed: delay, cursor: true, waitUntilVisible: true,
+    afterComplete: function(){
+            const cursorElement = document.querySelector(".mainTxt .ti-cursor");
+            if (cursorElement) {
+                cursorElement.style.display = "none";
+            }
+            
+            if(currentIndex == 4){
+                setTimeout(()=> {
+                    wallpaper.style="transform: scale(1);";
+                    currentIndex = (currentIndex + 1) % images.length;
+                    secondTxt.style.transform = 'scale(1)';
+                    //setInterval(falling, 200);
+                    mainSt.style.transform = 'scale(0)';
+                    setTimeout(() => {mainSt.querySelector('img').src = images[currentIndex];mainSt.style.transform = 'scale(1)';}, 200);
+            
+                    setTimeout(() => {
+                         currentIndex = (currentIndex + 1) % images.length;
+                         secondTxt.style.transform = 'scale(0)';
+                         mainSt.style.transform = 'scale(0)';mainTxt.style.transform = 'scale(0)';
+                         setTimeout(() => {
+                             mainTxt.innerHTML = "<b class='caveat' style='font-size:24px; cursor:pointer;' onclick='startReasons()'>I Love You baby 😻</b>";
+                             mainTxt.style.cursor = "pointer";
+                             mainTxt.onclick = startReasons;
+                             
+                             mainSt.style.cursor = "pointer";
+                             mainSt.onclick = startReasons;
+
+                             const clickPrompt = document.createElement("div");
+                             clickPrompt.id = "click-prompt-reasons";
+                             clickPrompt.className = "click-prompt-reasons";
+                             clickPrompt.setAttribute("role", "button");
+                             clickPrompt.setAttribute("tabindex", "0");
+                             clickPrompt.innerHTML = `<svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="13" cy="13" r="10"></circle><path d="m20.5 20.5 7 7"></path><circle cx="29" cy="29" r="1"></circle></svg><span>Click here to see why… 💘</span>`;
+                             clickPrompt.onclick = startReasons;
+                             clickPrompt.onkeydown = (event) => { if (event.key === "Enter" || event.key === " ") startReasons(); };
+                             document.querySelector('.mainMsg').appendChild(clickPrompt);
+
+                             mainSt.querySelector('img').src = images[currentIndex];
+                             mainSt.style.transform = 'scale(1)';
+                             mainTxt.style.transform = 'scale(1)';
+                             setInterval(falling, 300);
+                         }, 200);
+                    }, 3000);
+                }, 300);
+            }
+            
+            // mainSt.style.transform = 'scale(0)';
+            // setTimeout(() => {  }, 300);
+            // setTimeout(() => {
+            // 	mainSt.querySelector('img').src = images[1];
+            //     mainSt.style.transform = 'scale(1)';
+            // }, 350);
+        },
+    }).go();
+}
+
+///////////////////////////////////
+
+var sudahKlik = true;
+var fungsiBerfungsi = false;
+
+document.getElementById("loveIn").onclick = function() {
+    if (sudahKlik) {
+        document.querySelector(".cover").style="opacity:0;transition:all .8s ease";
+        document.querySelector(".overlay").style="opacity:0;transition:all .8s ease";
+        setTimeout(function(){
+            audio.play();
+            
+            document.querySelector(".overlay").style.display = "none";
+            /*
+            stiker1.classList.add("scale1");
+            teks1.classList.add("scale1");
+            */
+            
+            setTimeout(() => {
+                showElements();
+                teksAnimasi(texts[currentIndex], 28);
+                wallpaper.style="transform:scale(1)";
+            }, 300); // playing a game
+
+            setTimeout(() => {
+                nextSection(28);
+                wallpaper.style="transform: scale(1.3);";
+            }, 1200); // sitting in the living room
+
+            setTimeout(() => {
+                nextSection(27);
+                wallpaper.style="transform: scale(1);";
+            }, 2700); // i really like
+
+            setTimeout(() => {
+                nextSection(30);
+                wallpaper.style="transform: scale(1.3);";
+            }, 4400); // but what i like the most
+            
+            setTimeout(() => {
+                nextSection(30);
+                wallpaper.style="transform: scale(1);";
+            }, 6300); // is you
+
+            setTimeout(function(){fungsiBerfungsi = true}, 300);
+        }, 200);
+    } else {
+        sudahKlik = true; // Mark button as clicked
+        document.getElementById('loveIn').innerHTML = '<style>.lovein svg{animation:none;stroke:#ff0000;stroke-width:1.3;fill:none;width:35px;height:35px}</style><label class="lovein"><svg class="line" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g transform="translate(2.550170, 3.550158)"><path d="M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z"></path><path d="M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842"></path></g></svg></label><p id="ket">Touch the LOVE!</p>';
+    }
+}
+
+function falling() {const heart = document.createElement("div");heart.innerHTML = "<svg class='line spin' style='opacity:.5;z-index:100;stroke:#FFC2B8' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g transform='translate(2.550170, 3.550158)'><path d='M0.371729633,8.89614246 C-0.701270367,5.54614246 0.553729633,1.38114246 4.07072963,0.249142462 C5.92072963,-0.347857538 8.20372963,0.150142462 9.50072963,1.93914246 C10.7237296,0.0841424625 13.0727296,-0.343857538 14.9207296,0.249142462 C18.4367296,1.38114246 19.6987296,5.54614246 18.6267296,8.89614246 C16.9567296,14.2061425 11.1297296,16.9721425 9.50072963,16.9721425 C7.87272963,16.9721425 2.09772963,14.2681425 0.371729633,8.89614246 Z'></path><path d='M13.23843,4.013842 C14.44543,4.137842 15.20043,5.094842 15.15543,6.435842'></path></g></svg>";heart.className = "heart-icon";heart.style.left = (Math.random() * 95) + "vw";heart.style.animationDuration = (Math.random() * 3) + 2 + "s";document.body.appendChild(heart);}
+setInterval(function() {var heartArr = document.querySelectorAll(".heart-icon");if (heartArr.length > 100) {heartArr[0].remove();}}, 100);
+
+/////////////////
+
+jumlahKlik = 0;sudah=false;
+
+  function fungsibaru(btn) {
+    var tombol = document.getElementById("" + btn);
+    var tombolParent = tombol.parentNode;
+
+    var tombolPosisiX = Math.floor(Math.random() * 50) + 1;
+    var tombolPosisiY = Math.floor(Math.random() * 75) + 1;
+    var rotasiAcak = Math.floor(Math.random() * 360);
+
+    tombol.style.position = "relative";
+    tombol.style.left = tombolPosisiX + "px";
+    tombol.style.top = tombolPosisiY + "px";
+    tombol.style.transform = "rotate(" + rotasiAcak + "deg)";
+    tombolParent.appendChild(tombol);
+
+    jumlahKlik++;
+    //tolakteks.style="transform:scale(1)";
+    /*if(sudah==false){
+      sudah=true;
+      second_stiker.style.transform = "scale(0)";
+      setTimeout(function() {
+          second_stiker.style.transform = "scale(.9)";
+          inistiker3.src = inistiker3.src;
+      }, 300);
+    }*/
+
+    if(jumlahKlik == 3){
+        //swiper.slideNext();
+        jumlahKlik=0;
+    }
+  }
+
+//////
+
+function fungsiTerima() {
+    Swal.fire({
+        title: '' + teksTerima.innerHTML,
+        imageUrl: '' + stikerTerima.src,
+        imageWidth: 90,
+        imageHeight: 90,
+        imageAlt: 'By @aoudumber.dev',
+        confirmButtonText: 'OK',
+        allowOutsideClick: false,
+    });
+}
+
+document.addEventListener('click', function() {
+    if (currentIndex !== 1) {
+    	if (fungsiBerfungsi === true) {
+           //nextSection();
+        }
+    }
+});
+
+// ================= REASONS, GIFT & CERTIFICATE LOGIC =================
+let recipientName = "Shashi";
+let senderName = "Ovi";
+
+const reasons = [
+  "The way you love me. 💖",
+  "Your sweet smile, which makes me so happy in an instant. 😊✨",
+  "The lovely feeling I get whenever you're by my side. 🥰💞",
+  "The way you understand me even when I don't say a word. 🫶💗",
+  "Your kind and gentle heart, which makes me feel better. 🌷💛",
+  "The way you make me laugh. 😂💖",
+  "Your silly jokes and the adorable face you make when you laugh. 🤭😂",
+  "The way I feel at ease whenever I talk to you. 🥰🤍",
+  "The way you care about even the little details of my day. 💌❤️",
+  "I love the way you get adorably upset with me. 😚💞",
+  "The way you support my dreams and always believe in me. ✨🙌",
+  "The way you scold me and guide me toward the right path. 🥹🧭",
+  "The way you can make even a bad day feel beautiful. 🌈💖",
+  "Your sweet messages that make my heart flutter with joy. 💌💓",
+  "Your patience and the way you understand me. 🫶🤍",
+  "The way you remember even the little things I tell you. 🧠💞",
+  "Your beautiful, radiant smile that lights up even the darkest room. 🌟😊",
+  "The happiness I feel when we talk late into the night. 🌙💬",
+  "The way you accept me just as I am, with all my good and bad sides. 🫂💗",
+  "Your adorable pout when you tease me. 😚🥰",
+  "Your sweet hugs — I wish I could hold you right now. 🫂💖",
+  "The way you stand by me and make me feel like the luckiest person in the world. 🍀❤️",
+  "The way you show interest in me. 🥰💌",
+  "The way you make me feel special and deeply loved. 💝✨",
+  "The sweet nicknames you have for me. 💕😊",
+  "The way we can talk about anything and everything for hours. 💬💞",
+  "Your beautiful smile, which I could look at forever. 😍🌹",
+  "Your love for me, which keeps me happy from the inside. 💗☀️",
+  "The way you always check in to make sure I'm doing okay. 📱🥰",
+  "Your funny expressions that always make me laugh. 🤪😂",
+  "The way you know how to comfort me whenever I feel sad. 🫂💛",
+  "The way you make me feel at home whenever I'm with you. 🏡❤️",
+  "Your kindness toward everyone around you. 🌸🤍",
+  "The way you get excited about even the little things. ✨🥰",
+  "How beautiful everything feels when we walk side by side. 🚶‍♂️💞",
+  "The mischievous things you do with me that bring me so much joy. 😈😂",
+  "The way you protect and care for our relationship. 🛡️💖",
+  "Your beautiful heart, full of love and compassion. ❤️🌷",
+  "The way you make me look forward to each new day. 🌅💗",
+  "You're both my best friend and the person I love. 🫶💘",
+  "The sweet photos you send that I love looking at. 📸🥰",
+  "The way your sudden playful antics make me so happy. 🤭✨",
+  "Even when I misunderstand you, you gently set me straight. 🥺💞",
+  "The way you tell me that everything will be okay. 🤗💖",
+  "The way you make me feel like the most important person in the world. 👑❤️",
+  "Your beautiful way of thinking and the deep conversations we share. 🧠💬",
+  "The gentle way you speak to me when I'm worried. 🌷🫶",
+  "The way you're always there for me, through good times and bad. 🤝💗",
+  "The lovely future we dream of and want to build together. 🌈🏡",
+  "I love you simply because you're you, and I wouldn't change a thing about you. 💖♾️"
+];
+
+// SweetAlert custom romantic config helper
+const swalRomanticConfig = {
+  customClass: {
+    popup: 'romantic-swal',
+    title: 'romantic-swal-title',
+    htmlContainer: 'romantic-swal-html',
+    input: 'romantic-swal-input',
+    confirmButton: 'romantic-swal-confirm'
+  },
+  showClass: { popup: 'swal2-show', backdrop: 'swal2-backdrop-show' },
+  hideClass: { popup: 'swal2-hide', backdrop: 'swal2-backdrop-hide' }
+};
+
+function startReasons() {
+  // Remove the click prompt so it doesn't duplicate
+  const existingPrompt = document.getElementById('click-prompt-reasons');
+  if (existingPrompt) existingPrompt.remove();
+
+  // Disable further clicks on sticker / text
+  mainSt.onclick = null;
+  mainTxt.onclick = null;
+  mainSt.style.cursor = '';
+  mainTxt.style.cursor = '';
+
+  Swal.fire({
+    ...swalRomanticConfig,
+    title: 'Hello, my sweetheart! 💗',
+    text: 'What should I call you?',
+    input: 'text',
+    inputPlaceholder: 'Your name...',
+    confirmButtonText: 'Show me why you love me 💌',
+    allowOutsideClick: false,
+    inputValidator: (value) => {
+      if (!value) return 'Please tell me your name! 💕';
+    }
+  }).then((res2) => {
+    if (!res2.isConfirmed) return;
+    recipientName = res2.value.trim();
+      
+      // Personalize certificate
+      document.getElementById("cert-recipient").innerText = recipientName;
+      document.getElementById("cert-sender").innerText = senderName + " 💖";
+      const now = new Date();
+      document.getElementById("cert-date").innerText = now.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+      // Update cert description dynamically
+      document.getElementById("cert-desc").innerHTML = `For being the sweetest, most wonderful partner in the entire universe. <strong>${senderName}</strong> loves you more than words can ever express, <strong>${recipientName}</strong>. Your smile makes the world brighter, and your love makes life complete. 💕`;
+
+    showReasonsOverlay();
+  });
+}
+
+function showReasonsOverlay() {
+  const overlay = document.getElementById("reasons-overlay");
+  overlay.style.display = "flex";
+  
+  const card = overlay.querySelector(".reasons-card");
+  const content = document.getElementById("reasonsContent");
+  if (content) content.scrollTop = 0; // Reset scroll position to top
+  
+  // Force reflow before triggering transition
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      overlay.style.opacity = "1";
+      card.style.transform = "scale(1) translateY(0)";
+      // Clear transform after transition completes to enable normal Safari scroll
+      setTimeout(() => {
+        card.classList.add("active");
+      }, 600);
+    });
+  });
+  
+  const ul = document.getElementById("reasonsUl");
+  ul.innerHTML = "";
+  
+  reasons.forEach((reason, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `<strong style="color:#ffa2b6">#${index + 1}</strong>&ensp;${reason}`;
+    ul.appendChild(li);
+    
+    // Staggered fade-in with a cap so it doesn't take forever
+    const delay = Math.min(index * 70, 3500);
+    setTimeout(() => {
+      li.classList.add("show");
+    }, delay);
+  });
+
+  // Start auto scrolling after the animation finishes
+  setTimeout(initAutoScroll, 1200);
+}
+
+function openGift() {
+  // Stop auto-scroll and hide control bar
+  stopAutoScroll();
+
+  const reasonsOverlay = document.getElementById("reasons-overlay");
+  const giftOverlay = document.getElementById("gift-overlay");
+  const card = reasonsOverlay.querySelector(".reasons-card");
+  
+  // Remove active class to restore transform transitions
+  card.classList.remove("active");
+  
+  // Animate out
+  reasonsOverlay.style.opacity = "0";
+  card.style.transform = "scale(0.92) translateY(20px)";
+  
+  setTimeout(() => {
+    reasonsOverlay.style.display = "none";
+    giftOverlay.style.display = "flex"; // Restored flex for centering gift / certificate
+    
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        giftOverlay.style.opacity = "1";
+      });
+    });
+  }, 600);
+}
+
+let giftIsOpened = false;
+function revealGift(event) {
+  if (giftIsOpened) return;
+  giftIsOpened = true;
+  
+  const giftBox = document.getElementById("giftBox");
+  const giftSelection = document.getElementById("gift-selection");
+  giftBox.classList.add("shake");
+  
+  // Multi-stage burst: small burst on tap, big burst on reveal
+  const cx = event.clientX || window.innerWidth / 2;
+  const cy = event.clientY || window.innerHeight / 2;
+  createBurst(cx, cy, 15);
+  
+  setTimeout(() => {
+    giftBox.classList.remove("shake");
+    
+    // Big particle burst
+    createBurst(cx, cy, 50);
+    
+    // Fade out gift box
+    giftSelection.style.opacity = "0";
+    giftSelection.style.transform = "scale(1.2)";
+    giftSelection.style.transition = "all 0.5s ease-out";
+    
+    setTimeout(() => {
+      giftSelection.style.display = "none";
+      
+      const cert = document.getElementById("loveCert");
+      cert.style.display = "block";
+      
+      // Second burst of hearts when cert appears
+      setTimeout(() => {
+        createBurst(window.innerWidth / 2, window.innerHeight / 2, 25);
+        const btns = document.getElementById("certBtns");
+        btns.style.display = "flex";
+      }, 400);
+    }, 500);
+  }, 1600);
+}
+
+function createBurst(x, y, count) {
+  const symbols = ['💖', '❤️', '✨', '🌸', '💘', '⭐', '💕'];
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    p.className = 'burst-particle';
+    p.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+    
+    const angle = Math.random() * Math.PI * 2;
+    const velocity = Math.random() * 140 + 50;
+    
+    p.style.left = x + 'px';
+    p.style.top = y + 'px';
+    p.style.setProperty('--tx', Math.cos(angle) * velocity + 'px');
+    p.style.setProperty('--ty', Math.sin(angle) * velocity + 'px');
+    p.style.setProperty('--rot', (Math.random() * 400 + 180) + 'deg');
+    p.style.setProperty('--sc', (Math.random() * 0.6 + 0.5).toString());
+    p.style.fontSize = (Math.random() * 12 + 12) + 'px';
+    
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), 900);
+  }
+}
+
+function acceptLove(type, event) {
+  // Burst on button
+  createBurst(event.clientX, event.clientY, 35);
+  
+  // Massive heart shower
+  for (let i = 0; i < 50; i++) {
+    setTimeout(spawnSingleHeart, i * 50);
+  }
+  
+  if (type === 1) {
+    Swal.fire({
+      ...swalRomanticConfig,
+      title: 'My Heart is Overflowing! 🥰💖',
+      html: `<p style="line-height:1.6;font-size:14px">Thank you for accepting my love, <strong style="color:#ff6085">${recipientName}</strong>! You've made <strong style="color:#ff6085">${senderName}</strong> the happiest person alive. Every moment with you is a dream come true. 😘💕</p>`,
+      imageUrl: './assets/ciumin.gif',
+      imageWidth: 100,
+      imageHeight: 100,
+      confirmButtonText: 'I Love You Forever! 💖'
+    });
+  } else {
+    Swal.fire({
+      ...swalRomanticConfig,
+      title: '1000x Love Received! 😭❤️✨',
+      html: `<p style="line-height:1.6;font-size:14px">Wow! <strong style="color:#ff6085">${senderName}</strong> loves you 10,000x more, <strong style="color:#ff6085">${recipientName}</strong>! Let's build the most beautiful future together — forever and always, through every sunrise and sunset. 💑✨🌙</p>`,
+      imageUrl: './assets/emawh.gif',
+      imageWidth: 100,
+      imageHeight: 100,
+      confirmButtonText: 'Forever & Always 💝'
+    });
+  }
+}
+
+function spawnSingleHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart-icon";
+  const types = ["💖", "❤️", "💝", "💕", "💗", "🌸", "✨"];
+  const size = Math.random() * 14 + 14;
+  heart.innerHTML = `<span style="font-size:${size}px">${types[Math.floor(Math.random() * types.length)]}</span>`;
+  heart.style.left = (Math.random() * 95) + "vw";
+  const dur = (Math.random() * 3 + 2.5);
+  heart.style.animation = `heartMove ${dur}s linear forwards`;
+  document.body.appendChild(heart);
+  setTimeout(() => heart.remove(), dur * 1000);
+}
+// ================= AUTO-SCROLL & SCROLL CONTROLS =================
+let autoScrollTimer = null;
+let autoScrollSpeed = 1.2; // pixels per frame
+let isAutoScrollPaused = false;
+let scrollControlBar = null;
+let lastScrollStartTime = 0;
+
+function initAutoScroll() {
+  const overlay = document.getElementById("reasons-overlay");
+  const content = document.getElementById("reasonsContent");
+  if (!content) return;
+
+  // Create floating scroll control bar
+  if (!scrollControlBar) {
+    scrollControlBar = document.createElement("div");
+    scrollControlBar.className = "scroll-controls";
+    scrollControlBar.id = "scrollControlBar";
+    scrollControlBar.innerHTML = `
+      <button class="scroll-ctrl-btn" onclick="scrollReasons('up')" aria-label="Scroll Up">⬆️ Up</button>
+      <button class="scroll-ctrl-btn" id="pauseBtn" onclick="toggleAutoScroll()" aria-label="Pause/Resume">⏸️ Pause</button>
+      <button class="scroll-ctrl-btn" onclick="scrollReasons('down')" aria-label="Scroll Down">⬇️ Down</button>
+    `;
+    document.body.appendChild(scrollControlBar);
+  }
+  scrollControlBar.style.display = "flex";
+
+  // Start auto-scroll animation loop
+  isAutoScrollPaused = false;
+  document.getElementById("pauseBtn").innerHTML = "⏸️ Pause";
+  lastScrollStartTime = Date.now();
+  
+  if (autoScrollTimer) cancelAnimationFrame(autoScrollTimer);
+
+  function scrollStep() {
+    if (!isAutoScrollPaused && overlay.style.display !== "none" && overlay.style.display !== "") {
+      content.scrollTop += autoScrollSpeed;
+    }
+    // Stop if overlay is hidden
+    if (overlay.style.display === "none" || overlay.style.display === "") {
+      if (scrollControlBar) scrollControlBar.style.display = "none";
+      return;
+    }
+    autoScrollTimer = requestAnimationFrame(scrollStep);
+  }
+  autoScrollTimer = requestAnimationFrame(scrollStep);
+
+  // Pause auto-scroll when user touches the content container (manual scroll)
+  content.addEventListener("touchstart", pauseOnTouch, { passive: true });
+  content.addEventListener("mousedown", pauseOnTouch, { passive: true });
+}
+
+function pauseOnTouch() {
+  // Prevent SweetAlert touch event click-through from immediately pausing the auto-scroller
+  if (Date.now() - lastScrollStartTime < 1200) return;
+
+  if (!isAutoScrollPaused) {
+    isAutoScrollPaused = true;
+    const btn = document.getElementById("pauseBtn");
+    if (btn) btn.innerHTML = "▶️ Play";
+  }
+}
+
+function toggleAutoScroll() {
+  isAutoScrollPaused = !isAutoScrollPaused;
+  const btn = document.getElementById("pauseBtn");
+  if (btn) btn.innerHTML = isAutoScrollPaused ? "▶️ Play" : "⏸️ Pause";
+}
+
+function scrollReasons(direction) {
+  const content = document.getElementById("reasonsContent");
+  if (!content) return;
+  const amount = direction === "up" ? -200 : 200;
+  
+  // Use scrollBy if supported, fallback to direct scrollTop assignment for absolute reliability
+  if (typeof content.scrollBy === "function") {
+    try {
+      content.scrollBy({ top: amount, behavior: "smooth" });
+      return;
+    } catch (e) {}
+  }
+  content.scrollTop += amount;
+}
+
+function stopAutoScroll() {
+  if (autoScrollTimer) {
+    cancelAnimationFrame(autoScrollTimer);
+    autoScrollTimer = null;
+  }
+  if (scrollControlBar) scrollControlBar.style.display = "none";
+}
+</script>
+
+  <!-- ================= 50 REASONS OVERLAY ================= -->
+  <div id="reasons-overlay">
+    <div class="reasons-card">
+      <div class="reasons-header">
+        <img src="./assets/0906-peacegoma.gif" alt="Panda Goma">
+        <h3>Dear Shashi,,Hear are</h3>
+        <h3>50 Reasons Why I Love You 💖</h3>
+      </div>
+      <div class="reasons-content" id="reasonsContent">
+        <ul class="reasons-list" id="reasonsUl">
+          <!-- Populated dynamically by JS -->
+        </ul>
+      </div>
+      <button class="reasons-btn" onclick="openGift()">
+        I have one more gift for you... 🎁
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= GIFT OVERLAY ================= -->
+  <div id="gift-overlay">
+    <div class="gift-card">
+      <!-- Gift Box (Kadoin) -->
+      <div id="gift-selection" style="transition: all 0.5s ease-out;">
+        <h2 class="gift-title">I got you something special! 💝</h2>
+        <div class="gift-box-container" id="giftBox" onclick="revealGift(event)">
+          <img src="./assets/kadoin.png" alt="Gift Box" class="gift-box-img">
+          <div class="gift-box-glow"></div>
+        </div>
+        <p class="gift-hint">Tap the gift to open it... 🎁</p>
+      </div>
+
+      <!-- Love Certificate -->
+      <div class="cert-container" id="loveCert">
+        <div class="cert-inner">
+          <img src="./assets/bunga.gif" alt="Flowers" class="cert-bunga">
+          <h1 class="cert-title">Certificate of Love</h1>
+          <div class="cert-sub">This is to certify that</div>
+          <div class="cert-recipient" id="cert-recipient">Sweetheart</div>
+          <div class="cert-text" id="cert-desc">
+            For being the sweetest, cutest, and most wonderful partner in the entire universe. Your smile makes the world brighter, and your love makes my life complete. 💕
+          </div>
+          <div class="cert-footer">
+            <div class="cert-sig">
+              <span style="font-size:8px; color:#9a8d7e; text-transform:uppercase; letter-spacing:1px;">Date</span>
+              <span class="cert-sig-val" id="cert-date">Forever</span>
+            </div>
+            <div class="cert-sig">
+              <span style="font-size:8px; color:#9a8d7e; text-transform:uppercase; letter-spacing:1px;">Signed With Love</span>
+              <span class="cert-sig-val caveat" id="cert-sender">My Love 💖</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Certificate Buttons -->
+      <div class="cert-buttons" id="certBtns">
+        <button class="cert-btn accept-1" onclick="acceptLove(1, event)">I love you too! 💖</button>
+        <button class="cert-btn accept-2" onclick="acceptLove(2, event)">I love you 1000x! 💝</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
